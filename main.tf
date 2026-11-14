@@ -24,7 +24,7 @@ variable "instance_type" {
 variable "ssh_allowed_cidr" {
   description = "IP range allowed to connect over SSH"
   type        = string
-  default     = "203.0.113.10/32"
+  default     = "176.61.80.53/32"
 }
 
 provider "aws" {
