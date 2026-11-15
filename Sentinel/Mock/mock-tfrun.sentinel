@@ -1,0 +1,52 @@
+id = "run-mAhEgFWVEy2gmVzx"
+created_at = "2026-11-14T23:41:03.352Z"
+created_by = "gh-webhooks-L00205909-j011U4Zu39"
+message = "Edit main.tf"
+commit_sha = "6b6e45d23dad8179314851921dc750937c0cf37e"
+speculative = false
+is_destroy = false
+refresh = true
+refresh_only = false
+replace_addrs = null
+target_addrs = null
+project = {
+	"id":   "prj-9f55terXXuB8euR7",
+	"name": "Sentinel",
+}
+
+variables = {
+	"TFC_AWS_PROVIDER_AUTH": {
+		"category":  "env",
+		"sensitive": false,
+	},
+	"TFC_AWS_RUN_ROLE_ARN": {
+		"category":  "env",
+		"sensitive": false,
+	},
+	"TFC_AWS_WORKLOAD_IDENTITY_AUDIENCE": {
+		"category":  "env",
+		"sensitive": false,
+	},
+}
+
+organization = {
+	"name": "L00205909",
+}
+
+workspace = {
+	"auto_apply":     false,
+	"created_at":     "2026-11-14T23:15:53.052Z",
+	"description":    null,
+	"execution_mode": "default",
+	"id":             "ws-D7Kiovq5UD5R2Jvc",
+	"name":           "L00205909-tf-sentinel-assignment",
+	"tag_bindings":   [],
+	"tags":           [],
+	"vcs_repo": {
+		"branch":             "terraform",
+		"display_identifier": "L00205909/L00205909-tf-sentinel-assignment",
+		"identifier":         "L00205909/L00205909-tf-sentinel-assignment",
+		"ingress_submodules": false,
+	},
+	"working_directory": "",
+}

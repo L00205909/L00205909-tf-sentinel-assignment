@@ -1,0 +1,21 @@
+import "tfplan/v2" as tfplan
+
+aws_security_groups = filter tfplan.resource_changes as _, resource {
+    resource.mode is "managed" and
+    resource.type is "aws_security_group" and
+    resource.change.after is not null
+}
+
+main = rule {
+    all aws_security_groups as _, security_group {
+        all filter security_group.change.after.ingress as _, ingress_rule {
+            ingress_rule.protocol is "-1" or
+            ingress_rule.protocol is "tcp" and
+            ingress_rule.from_port <= 22 and
+            ingress_rule.to_port >= 22
+        } as _, ssh_rule {
+            not (ssh_rule.cidr_blocks contains "0.0.0.0/0") and
+            not (ssh_rule.ipv6_cidr_blocks contains "::/0")
+        }
+    }
+}

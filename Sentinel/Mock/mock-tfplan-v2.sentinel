@@ -1,0 +1,994 @@
+terraform_version = "1.17.2"
+
+planned_values = {
+	"outputs": {},
+	"resources": {
+		"aws_instance.demo": {
+			"address":        "aws_instance.demo",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "demo",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_instance",
+			"values": {
+				"ami": "REDACTED_SENSITIVE",
+				"credit_specification": [],
+				"force_destroy":        false,
+				"get_password_data":    false,
+				"hibernation":          null,
+				"instance_type":        "t3.micro",
+				"launch_template":      [],
+				"metadata_options": [
+					{
+						"http_endpoint":      "enabled",
+						"http_protocol_ipv6": "disabled",
+						"http_tokens":        "required",
+					},
+				],
+				"region": "eu-west-1",
+				"root_block_device": [
+					{
+						"delete_on_termination": true,
+						"encrypted":             true,
+						"tags":                  null,
+						"volume_size":           8,
+						"volume_type":           "gp3",
+					},
+				],
+				"source_dest_check": true,
+				"tags": {
+					"Environment": "demo",
+					"Name":        "demo-ec2",
+					"Project":     "Terraform Assignment",
+				},
+				"tags_all": {
+					"Environment": "demo",
+					"Name":        "demo-ec2",
+					"Project":     "Terraform Assignment",
+				},
+				"timeouts":                    null,
+				"user_data":                   null,
+				"user_data_replace_on_change": false,
+				"volume_tags":                 null,
+			},
+		},
+		"aws_security_group.demo": {
+			"address":        "aws_security_group.demo",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "demo",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_security_group",
+			"values": {
+				"description": "Security group for the demo application",
+				"egress": [
+					{
+						"cidr_blocks": [
+							"0.0.0.0/0",
+						],
+						"description":      "Allow outbound HTTPS",
+						"from_port":        443,
+						"ipv6_cidr_blocks": [],
+						"prefix_list_ids":  [],
+						"protocol":         "tcp",
+						"security_groups":  [],
+						"self":             false,
+						"to_port":          443,
+					},
+				],
+				"ingress": [
+					{
+						"cidr_blocks": [
+							"176.61.80.53/32",
+						],
+						"description":      "Allow SSH from a restricted example IP",
+						"from_port":        22,
+						"ipv6_cidr_blocks": [],
+						"prefix_list_ids":  [],
+						"protocol":         "tcp",
+						"security_groups":  [],
+						"self":             false,
+						"to_port":          22,
+					},
+				],
+				"name":                   "demo-security-group",
+				"region":                 "eu-west-1",
+				"revoke_rules_on_delete": false,
+				"tags": {
+					"Environment": "demo",
+					"Project":     "Terraform Assignment",
+				},
+				"tags_all": {
+					"Environment": "demo",
+					"Project":     "Terraform Assignment",
+				},
+				"timeouts": null,
+			},
+		},
+	},
+}
+
+variables = {
+	"aws_region": {
+		"name":  "aws_region",
+		"value": "eu-west-1",
+	},
+	"instance_type": {
+		"name":  "instance_type",
+		"value": "t3.micro",
+	},
+	"ssh_allowed_cidr": {
+		"name":  "ssh_allowed_cidr",
+		"value": "176.61.80.53/32",
+	},
+}
+
+resource_changes = {
+	"aws_instance.demo": {
+		"address": "aws_instance.demo",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"ami": "REDACTED_SENSITIVE",
+				"credit_specification": [],
+				"force_destroy":        false,
+				"get_password_data":    false,
+				"hibernation":          null,
+				"instance_type":        "t3.micro",
+				"launch_template":      [],
+				"metadata_options": [
+					{
+						"http_endpoint":      "enabled",
+						"http_protocol_ipv6": "disabled",
+						"http_tokens":        "required",
+					},
+				],
+				"region": "eu-west-1",
+				"root_block_device": [
+					{
+						"delete_on_termination": true,
+						"encrypted":             true,
+						"tags":                  null,
+						"volume_size":           8,
+						"volume_type":           "gp3",
+					},
+				],
+				"source_dest_check": true,
+				"tags": {
+					"Environment": "demo",
+					"Name":        "demo-ec2",
+					"Project":     "Terraform Assignment",
+				},
+				"tags_all": {
+					"Environment": "demo",
+					"Name":        "demo-ec2",
+					"Project":     "Terraform Assignment",
+				},
+				"timeouts":                    null,
+				"user_data":                   null,
+				"user_data_replace_on_change": false,
+				"volume_tags":                 null,
+			},
+			"after_unknown": {
+				"arn": true,
+				"associate_public_ip_address":        true,
+				"availability_zone":                  true,
+				"capacity_reservation_specification": true,
+				"cpu_options":                        true,
+				"credit_specification":               [],
+				"disable_api_stop":                   true,
+				"disable_api_termination":            true,
+				"ebs_block_device":                   true,
+				"ebs_optimized":                      true,
+				"enable_primary_ipv6":                true,
+				"enclave_options":                    true,
+				"ephemeral_block_device":             true,
+				"host_id":                            true,
+				"host_resource_group_arn":            true,
+				"iam_instance_profile":               true,
+				"id": true,
+				"instance_initiated_shutdown_behavior": true,
+				"instance_lifecycle":                   true,
+				"instance_market_options":              true,
+				"instance_state":                       true,
+				"ipv6_address_count":                   true,
+				"ipv6_addresses":                       true,
+				"key_name":                             true,
+				"launch_template":                      [],
+				"maintenance_options":                  true,
+				"metadata_options": [
+					{
+						"http_put_response_hop_limit": true,
+						"instance_metadata_tags":      true,
+					},
+				],
+				"monitoring":                   true,
+				"network_interface":            true,
+				"outpost_arn":                  true,
+				"password_data":                true,
+				"placement_group":              true,
+				"placement_group_id":           true,
+				"placement_partition_number":   true,
+				"primary_network_interface":    true,
+				"primary_network_interface_id": true,
+				"private_dns":                  true,
+				"private_dns_name_options":     true,
+				"private_ip":                   true,
+				"public_dns":                   true,
+				"public_ip":                    true,
+				"root_block_device": [
+					{
+						"device_name": true,
+						"iops":        true,
+						"kms_key_id":  true,
+						"tags_all":    true,
+						"throughput":  true,
+						"volume_id":   true,
+					},
+				],
+				"secondary_network_interface": true,
+				"secondary_private_ips":       true,
+				"security_groups":             true,
+				"spot_instance_request_id":    true,
+				"subnet_id":                   true,
+				"tags":                        {},
+				"tags_all":                    {},
+				"tenancy":                     true,
+				"user_data_base64":            true,
+				"vpc_security_group_ids":      true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "demo",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_instance",
+	},
+	"aws_security_group.demo": {
+		"address": "aws_security_group.demo",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"description": "Security group for the demo application",
+				"egress": [
+					{
+						"cidr_blocks": [
+							"0.0.0.0/0",
+						],
+						"description":      "Allow outbound HTTPS",
+						"from_port":        443,
+						"ipv6_cidr_blocks": [],
+						"prefix_list_ids":  [],
+						"protocol":         "tcp",
+						"security_groups":  [],
+						"self":             false,
+						"to_port":          443,
+					},
+				],
+				"ingress": [
+					{
+						"cidr_blocks": [
+							"176.61.80.53/32",
+						],
+						"description":      "Allow SSH from a restricted example IP",
+						"from_port":        22,
+						"ipv6_cidr_blocks": [],
+						"prefix_list_ids":  [],
+						"protocol":         "tcp",
+						"security_groups":  [],
+						"self":             false,
+						"to_port":          22,
+					},
+				],
+				"name":                   "demo-security-group",
+				"region":                 "eu-west-1",
+				"revoke_rules_on_delete": false,
+				"tags": {
+					"Environment": "demo",
+					"Project":     "Terraform Assignment",
+				},
+				"tags_all": {
+					"Environment": "demo",
+					"Project":     "Terraform Assignment",
+				},
+				"timeouts": null,
+			},
+			"after_unknown": {
+				"arn": true,
+				"egress": [
+					{
+						"cidr_blocks": [
+							false,
+						],
+						"ipv6_cidr_blocks": [],
+						"prefix_list_ids":  [],
+						"security_groups":  [],
+					},
+				],
+				"id": true,
+				"ingress": [
+					{
+						"cidr_blocks": [
+							false,
+						],
+						"ipv6_cidr_blocks": [],
+						"prefix_list_ids":  [],
+						"security_groups":  [],
+					},
+				],
+				"name_prefix": true,
+				"owner_id":    true,
+				"tags":        {},
+				"tags_all":    {},
+				"vpc_id":      true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "demo",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_security_group",
+	},
+}
+
+resource_drift = {}
+
+output_changes = {}
+
+raw = {
+	"configuration": {
+		"provider_config": {
+			"aws": {
+				"expressions": {
+					"region": {
+						"references": [
+							"var.aws_region",
+						],
+					},
+				},
+				"full_name":          "registry.terraform.io/hashicorp/aws",
+				"name":               "aws",
+				"version_constraint": "6.64.0",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address": "aws_instance.demo",
+					"expressions": {
+						"ami": {
+							"references": [
+								"data.aws_ssm_parameter.al2023_ami.value",
+								"data.aws_ssm_parameter.al2023_ami",
+							],
+						},
+						"instance_type": {
+							"references": [
+								"var.instance_type",
+							],
+						},
+						"metadata_options": [
+							{
+								"http_endpoint": {
+									"constant_value": "enabled",
+								},
+								"http_tokens": {
+									"constant_value": "required",
+								},
+							},
+						],
+						"root_block_device": [
+							{
+								"encrypted": {
+									"constant_value": true,
+								},
+								"volume_size": {
+									"constant_value": 8,
+								},
+								"volume_type": {
+									"constant_value": "gp3",
+								},
+							},
+						],
+						"tags": {
+							"constant_value": {
+								"Environment": "demo",
+								"Name":        "demo-ec2",
+								"Project":     "Terraform Assignment",
+							},
+						},
+						"vpc_security_group_ids": {
+							"references": [
+								"aws_security_group.demo.id",
+								"aws_security_group.demo",
+							],
+						},
+					},
+					"mode":                "managed",
+					"name":                "demo",
+					"provider_config_key": "aws",
+					"schema_version":      2,
+					"type":                "aws_instance",
+				},
+				{
+					"address": "aws_security_group.demo",
+					"expressions": {
+						"description": {
+							"constant_value": "Security group for the demo application",
+						},
+						"egress": {
+							"constant_value": [
+								{
+									"cidr_blocks": [
+										"0.0.0.0/0",
+									],
+									"description":      "Allow outbound HTTPS",
+									"from_port":        443,
+									"ipv6_cidr_blocks": null,
+									"prefix_list_ids":  null,
+									"protocol":         "tcp",
+									"security_groups":  null,
+									"self":             null,
+									"to_port":          443,
+								},
+							],
+						},
+						"ingress": {
+							"references": [
+								"var.ssh_allowed_cidr",
+							],
+						},
+						"name": {
+							"constant_value": "demo-security-group",
+						},
+						"tags": {
+							"constant_value": {
+								"Environment": "demo",
+								"Project":     "Terraform Assignment",
+							},
+						},
+					},
+					"mode":                "managed",
+					"name":                "demo",
+					"provider_config_key": "aws",
+					"schema_version":      1,
+					"type":                "aws_security_group",
+				},
+				{
+					"address": "data.aws_ssm_parameter.al2023_ami",
+					"expressions": {
+						"name": {
+							"constant_value": "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64",
+						},
+					},
+					"mode":                "data",
+					"name":                "al2023_ami",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_ssm_parameter",
+				},
+			],
+			"variables": {
+				"aws_region": {
+					"default":     "eu-west-1",
+					"description": "AWS region for this example",
+				},
+				"instance_type": {
+					"default":     "t3.micro",
+					"description": "Approved EC2 instance type",
+				},
+				"ssh_allowed_cidr": {
+					"default":     "176.61.80.53/32",
+					"description": "IP range allowed to connect over SSH",
+				},
+			},
+		},
+	},
+	"format_version": "1.2",
+	"planned_values": {
+		"root_module": {
+			"resources": [
+				{
+					"address":        "aws_instance.demo",
+					"mode":           "managed",
+					"name":           "demo",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 2,
+					"sensitive_values": {
+						"ami": true,
+						"capacity_reservation_specification": [],
+						"cpu_options":                        [],
+						"credit_specification":               [],
+						"ebs_block_device":                   [],
+						"enclave_options":                    [],
+						"ephemeral_block_device":             [],
+						"instance_market_options":            [],
+						"ipv6_addresses":                     [],
+						"launch_template":                    [],
+						"maintenance_options":                [],
+						"metadata_options": [
+							{},
+						],
+						"network_interface":         [],
+						"primary_network_interface": [],
+						"private_dns_name_options":  [],
+						"root_block_device": [
+							{
+								"tags_all": {},
+							},
+						],
+						"secondary_network_interface": [],
+						"secondary_private_ips":       [],
+						"security_groups":             [],
+						"tags":                        {},
+						"tags_all":                    {},
+						"vpc_security_group_ids":      [],
+					},
+					"type": "aws_instance",
+					"values": {
+						"ami": "REDACTED_SENSITIVE",
+						"credit_specification": [],
+						"force_destroy":        false,
+						"get_password_data":    false,
+						"hibernation":          null,
+						"instance_type":        "t3.micro",
+						"launch_template":      [],
+						"metadata_options": [
+							{
+								"http_endpoint":      "enabled",
+								"http_protocol_ipv6": "disabled",
+								"http_tokens":        "required",
+							},
+						],
+						"region": "eu-west-1",
+						"root_block_device": [
+							{
+								"delete_on_termination": true,
+								"encrypted":             true,
+								"tags":                  null,
+								"volume_size":           8,
+								"volume_type":           "gp3",
+							},
+						],
+						"source_dest_check": true,
+						"tags": {
+							"Environment": "demo",
+							"Name":        "demo-ec2",
+							"Project":     "Terraform Assignment",
+						},
+						"tags_all": {
+							"Environment": "demo",
+							"Name":        "demo-ec2",
+							"Project":     "Terraform Assignment",
+						},
+						"timeouts":                    null,
+						"user_data":                   null,
+						"user_data_replace_on_change": false,
+						"volume_tags":                 null,
+					},
+				},
+				{
+					"address":        "aws_security_group.demo",
+					"mode":           "managed",
+					"name":           "demo",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 1,
+					"sensitive_values": {
+						"egress": [
+							{
+								"cidr_blocks": [
+									false,
+								],
+								"ipv6_cidr_blocks": [],
+								"prefix_list_ids":  [],
+								"security_groups":  [],
+							},
+						],
+						"ingress": [
+							{
+								"cidr_blocks": [
+									false,
+								],
+								"ipv6_cidr_blocks": [],
+								"prefix_list_ids":  [],
+								"security_groups":  [],
+							},
+						],
+						"tags":     {},
+						"tags_all": {},
+					},
+					"type": "aws_security_group",
+					"values": {
+						"description": "Security group for the demo application",
+						"egress": [
+							{
+								"cidr_blocks": [
+									"0.0.0.0/0",
+								],
+								"description":      "Allow outbound HTTPS",
+								"from_port":        443,
+								"ipv6_cidr_blocks": [],
+								"prefix_list_ids":  [],
+								"protocol":         "tcp",
+								"security_groups":  [],
+								"self":             false,
+								"to_port":          443,
+							},
+						],
+						"ingress": [
+							{
+								"cidr_blocks": [
+									"176.61.80.53/32",
+								],
+								"description":      "Allow SSH from a restricted example IP",
+								"from_port":        22,
+								"ipv6_cidr_blocks": [],
+								"prefix_list_ids":  [],
+								"protocol":         "tcp",
+								"security_groups":  [],
+								"self":             false,
+								"to_port":          22,
+							},
+						],
+						"name":                   "demo-security-group",
+						"region":                 "eu-west-1",
+						"revoke_rules_on_delete": false,
+						"tags": {
+							"Environment": "demo",
+							"Project":     "Terraform Assignment",
+						},
+						"tags_all": {
+							"Environment": "demo",
+							"Project":     "Terraform Assignment",
+						},
+						"timeouts": null,
+					},
+				},
+			],
+		},
+	},
+	"prior_state": {
+		"format_version":    "1.0",
+		"terraform_version": "1.17.2",
+		"values": {
+			"root_module": {
+				"resources": [
+					{
+						"address":        "data.aws_ssm_parameter.al2023_ami",
+						"mode":           "data",
+						"name":           "al2023_ami",
+						"provider_name":  "registry.terraform.io/hashicorp/aws",
+						"schema_version": 0,
+						"sensitive_values": {
+							"value": true,
+						},
+						"type": "aws_ssm_parameter",
+						"values": {
+							"arn":             "arn:aws:ssm:eu-west-1::parameter/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64",
+							"id":              "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64",
+							"insecure_value":  "ami-0f00e1cf9df80b6ac",
+							"name":            "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64",
+							"region":          "eu-west-1",
+							"type":            "String",
+							"value":           "ami-0f00e1cf9df80b6ac",
+							"version":         202,
+							"with_decryption": true,
+						},
+					},
+				],
+			},
+		},
+	},
+	"relevant_attributes": [
+		{
+			"attribute": [
+				"value",
+			],
+			"resource": "data.aws_ssm_parameter.al2023_ami",
+		},
+		{
+			"attribute": [
+				"id",
+			],
+			"resource": "aws_security_group.demo",
+		},
+	],
+	"resource_changes": [
+		{
+			"address": "aws_instance.demo",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"ami": "REDACTED_SENSITIVE",
+					"credit_specification": [],
+					"force_destroy":        false,
+					"get_password_data":    false,
+					"hibernation":          null,
+					"instance_type":        "t3.micro",
+					"launch_template":      [],
+					"metadata_options": [
+						{
+							"http_endpoint":      "enabled",
+							"http_protocol_ipv6": "disabled",
+							"http_tokens":        "required",
+						},
+					],
+					"region": "eu-west-1",
+					"root_block_device": [
+						{
+							"delete_on_termination": true,
+							"encrypted":             true,
+							"tags":                  null,
+							"volume_size":           8,
+							"volume_type":           "gp3",
+						},
+					],
+					"source_dest_check": true,
+					"tags": {
+						"Environment": "demo",
+						"Name":        "demo-ec2",
+						"Project":     "Terraform Assignment",
+					},
+					"tags_all": {
+						"Environment": "demo",
+						"Name":        "demo-ec2",
+						"Project":     "Terraform Assignment",
+					},
+					"timeouts":                    null,
+					"user_data":                   null,
+					"user_data_replace_on_change": false,
+					"volume_tags":                 null,
+				},
+				"after_sensitive": {
+					"ami": true,
+					"capacity_reservation_specification": [],
+					"cpu_options":                        [],
+					"credit_specification":               [],
+					"ebs_block_device":                   [],
+					"enclave_options":                    [],
+					"ephemeral_block_device":             [],
+					"instance_market_options":            [],
+					"ipv6_addresses":                     [],
+					"launch_template":                    [],
+					"maintenance_options":                [],
+					"metadata_options": [
+						{},
+					],
+					"network_interface":         [],
+					"primary_network_interface": [],
+					"private_dns_name_options":  [],
+					"root_block_device": [
+						{
+							"tags_all": {},
+						},
+					],
+					"secondary_network_interface": [],
+					"secondary_private_ips":       [],
+					"security_groups":             [],
+					"tags":                        {},
+					"tags_all":                    {},
+					"vpc_security_group_ids":      [],
+				},
+				"after_unknown": {
+					"arn": true,
+					"associate_public_ip_address":        true,
+					"availability_zone":                  true,
+					"capacity_reservation_specification": true,
+					"cpu_options":                        true,
+					"credit_specification":               [],
+					"disable_api_stop":                   true,
+					"disable_api_termination":            true,
+					"ebs_block_device":                   true,
+					"ebs_optimized":                      true,
+					"enable_primary_ipv6":                true,
+					"enclave_options":                    true,
+					"ephemeral_block_device":             true,
+					"host_id":                            true,
+					"host_resource_group_arn":            true,
+					"iam_instance_profile":               true,
+					"id": true,
+					"instance_initiated_shutdown_behavior": true,
+					"instance_lifecycle":                   true,
+					"instance_market_options":              true,
+					"instance_state":                       true,
+					"ipv6_address_count":                   true,
+					"ipv6_addresses":                       true,
+					"key_name":                             true,
+					"launch_template":                      [],
+					"maintenance_options":                  true,
+					"metadata_options": [
+						{
+							"http_put_response_hop_limit": true,
+							"instance_metadata_tags":      true,
+						},
+					],
+					"monitoring":                   true,
+					"network_interface":            true,
+					"outpost_arn":                  true,
+					"password_data":                true,
+					"placement_group":              true,
+					"placement_group_id":           true,
+					"placement_partition_number":   true,
+					"primary_network_interface":    true,
+					"primary_network_interface_id": true,
+					"private_dns":                  true,
+					"private_dns_name_options":     true,
+					"private_ip":                   true,
+					"public_dns":                   true,
+					"public_ip":                    true,
+					"root_block_device": [
+						{
+							"device_name": true,
+							"iops":        true,
+							"kms_key_id":  true,
+							"tags_all":    true,
+							"throughput":  true,
+							"volume_id":   true,
+						},
+					],
+					"secondary_network_interface": true,
+					"secondary_private_ips":       true,
+					"security_groups":             true,
+					"spot_instance_request_id":    true,
+					"subnet_id":                   true,
+					"tags":                        {},
+					"tags_all":                    {},
+					"tenancy":                     true,
+					"user_data_base64":            true,
+					"vpc_security_group_ids":      true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "demo",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_instance",
+		},
+		{
+			"address": "aws_security_group.demo",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"description": "Security group for the demo application",
+					"egress": [
+						{
+							"cidr_blocks": [
+								"0.0.0.0/0",
+							],
+							"description":      "Allow outbound HTTPS",
+							"from_port":        443,
+							"ipv6_cidr_blocks": [],
+							"prefix_list_ids":  [],
+							"protocol":         "tcp",
+							"security_groups":  [],
+							"self":             false,
+							"to_port":          443,
+						},
+					],
+					"ingress": [
+						{
+							"cidr_blocks": [
+								"176.61.80.53/32",
+							],
+							"description":      "Allow SSH from a restricted example IP",
+							"from_port":        22,
+							"ipv6_cidr_blocks": [],
+							"prefix_list_ids":  [],
+							"protocol":         "tcp",
+							"security_groups":  [],
+							"self":             false,
+							"to_port":          22,
+						},
+					],
+					"name":                   "demo-security-group",
+					"region":                 "eu-west-1",
+					"revoke_rules_on_delete": false,
+					"tags": {
+						"Environment": "demo",
+						"Project":     "Terraform Assignment",
+					},
+					"tags_all": {
+						"Environment": "demo",
+						"Project":     "Terraform Assignment",
+					},
+					"timeouts": null,
+				},
+				"after_sensitive": {
+					"egress": [
+						{
+							"cidr_blocks": [
+								false,
+							],
+							"ipv6_cidr_blocks": [],
+							"prefix_list_ids":  [],
+							"security_groups":  [],
+						},
+					],
+					"ingress": [
+						{
+							"cidr_blocks": [
+								false,
+							],
+							"ipv6_cidr_blocks": [],
+							"prefix_list_ids":  [],
+							"security_groups":  [],
+						},
+					],
+					"tags":     {},
+					"tags_all": {},
+				},
+				"after_unknown": {
+					"arn": true,
+					"egress": [
+						{
+							"cidr_blocks": [
+								false,
+							],
+							"ipv6_cidr_blocks": [],
+							"prefix_list_ids":  [],
+							"security_groups":  [],
+						},
+					],
+					"id": true,
+					"ingress": [
+						{
+							"cidr_blocks": [
+								false,
+							],
+							"ipv6_cidr_blocks": [],
+							"prefix_list_ids":  [],
+							"security_groups":  [],
+						},
+					],
+					"name_prefix": true,
+					"owner_id":    true,
+					"tags":        {},
+					"tags_all":    {},
+					"vpc_id":      true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "demo",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_security_group",
+		},
+	],
+	"terraform_version": "1.17.2",
+	"timestamp":         "2026-11-14T23:41:41Z",
+	"variables": {
+		"aws_region": {
+			"value": "eu-west-1",
+		},
+		"instance_type": {
+			"value": "t3.micro",
+		},
+		"ssh_allowed_cidr": {
+			"value": "176.61.80.53/32",
+		},
+	},
+}

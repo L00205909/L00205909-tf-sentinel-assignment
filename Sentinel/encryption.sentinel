@@ -1,0 +1,16 @@
+import "tfplan/v2" as tfplan
+
+aws_instances = filter tfplan.resource_changes as _, resource {
+    resource.mode is "managed" and
+    resource.type is "aws_instance" and
+    resource.change.after is not null
+}
+
+main = rule {
+    all aws_instances as _, instance {
+        length(instance.change.after.root_block_device) > 0 and
+        all instance.change.after.root_block_device as _, volume {
+            volume.encrypted is true
+        }
+    }
+}

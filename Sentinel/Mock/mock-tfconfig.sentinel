@@ -1,0 +1,178 @@
+import "strings"
+import "types"
+
+_modules = {
+	"root": {
+		"data": {
+			"aws_ssm_parameter": {
+				"al2023_ami": {
+					"config": {
+						"name": "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64",
+					},
+					"provisioners": null,
+					"references": {
+						"name": [],
+					},
+				},
+			},
+		},
+		"modules": {},
+		"outputs": {},
+		"providers": {
+			"aws": {
+				"alias": {
+					"": {
+						"config": {},
+						"references": {
+							"region": [
+								"var.aws_region",
+							],
+						},
+						"version": "6.64.0",
+					},
+				},
+				"config": {},
+				"references": {
+					"region": [
+						"var.aws_region",
+					],
+				},
+				"version": "6.64.0",
+			},
+		},
+		"resources": {
+			"aws_instance": {
+				"demo": {
+					"config": {
+						"metadata_options": [
+							{
+								"http_endpoint": "enabled",
+								"http_tokens":   "required",
+							},
+						],
+						"root_block_device": [
+							{
+								"encrypted":   true,
+								"volume_size": 8,
+								"volume_type": "gp3",
+							},
+						],
+						"tags": {
+							"Environment": "demo",
+							"Name":        "demo-ec2",
+							"Project":     "Terraform Assignment",
+						},
+					},
+					"provisioners": null,
+					"references": {
+						"ami": [
+							"data.aws_ssm_parameter.al2023_ami.value",
+							"data.aws_ssm_parameter.al2023_ami",
+						],
+						"instance_type": [
+							"var.instance_type",
+						],
+						"metadata_options": [
+							{
+								"http_endpoint": [],
+								"http_tokens":   [],
+							},
+						],
+						"root_block_device": [
+							{
+								"encrypted":   [],
+								"volume_size": [],
+								"volume_type": [],
+							},
+						],
+						"tags": [],
+						"vpc_security_group_ids": [
+							"aws_security_group.demo.id",
+							"aws_security_group.demo",
+						],
+					},
+				},
+			},
+			"aws_security_group": {
+				"demo": {
+					"config": {
+						"description": "Security group for the demo application",
+						"egress": [
+							{
+								"cidr_blocks": [
+									"0.0.0.0/0",
+								],
+								"description":      "Allow outbound HTTPS",
+								"from_port":        443,
+								"ipv6_cidr_blocks": null,
+								"prefix_list_ids":  null,
+								"protocol":         "tcp",
+								"security_groups":  null,
+								"self":             null,
+								"to_port":          443,
+							},
+						],
+						"name": "demo-security-group",
+						"tags": {
+							"Environment": "demo",
+							"Project":     "Terraform Assignment",
+						},
+					},
+					"provisioners": null,
+					"references": {
+						"description": [],
+						"egress":      [],
+						"ingress": [
+							"var.ssh_allowed_cidr",
+						],
+						"name": [],
+						"tags": [],
+					},
+				},
+			},
+		},
+		"variables": {
+			"aws_region": {
+				"default":     "eu-west-1",
+				"description": "AWS region for this example",
+			},
+			"instance_type": {
+				"default":     "t3.micro",
+				"description": "Approved EC2 instance type",
+			},
+			"ssh_allowed_cidr": {
+				"default":     "176.61.80.53/32",
+				"description": "IP range allowed to connect over SSH",
+			},
+		},
+	},
+}
+
+module_paths = [
+	[],
+]
+
+module = func(path) {
+	if types.type_of(path) is not "list" {
+		error("expected list, got", types.type_of(path))
+	}
+
+	if length(path) < 1 {
+		return _modules.root
+	}
+
+	addr = []
+	for path as p {
+		append(addr, "module")
+		append(addr, p)
+	}
+
+	return _modules[strings.join(addr, ".")]
+}
+
+data = _modules.root.data
+modules = _modules.root.modules
+providers = _modules.root.providers
+resources = _modules.root.resources
+variables = _modules.root.variables
+outputs = _modules.root.outputs
