@@ -1,0 +1,17 @@
+import "tfplan/v2" as tfplan
+
+aws_instances = filter tfplan.resource_changes as _, resource {
+    resource.mode is "managed" and
+    resource.type is "aws_instance" and
+    resource.change.after is not null
+}
+
+main = rule {
+    all aws_instances as _, instance {
+        length(instance.change.after.metadata_options) > 0 and
+        all instance.change.after.metadata_options as _, metadata {
+            metadata.http_endpoint is "enabled" and
+            metadata.http_tokens is "required"
+        }
+    }
+}
