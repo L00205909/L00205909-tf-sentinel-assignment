@@ -67,14 +67,14 @@ resource "aws_instance" "demo" {
   vpc_security_group_ids = [aws_security_group.demo.id]
 
   root_block_device {
-    encrypted   = false
+    encrypted   = true
     volume_type = "gp3"
     volume_size = 8
   }
 
   metadata_options {
     http_endpoint = "enabled"
-    http_tokens   = "required"
+    http_tokens   = "optional"
   }
 
   tags = {
