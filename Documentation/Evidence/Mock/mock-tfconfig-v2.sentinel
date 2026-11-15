@@ -1,0 +1,184 @@
+import "strings"
+
+providers = {
+	"aws": {
+		"alias": "",
+		"config": {
+			"region": {
+				"references": [
+					"var.aws_region",
+				],
+			},
+		},
+		"full_name":           "registry.terraform.io/hashicorp/aws",
+		"module_address":      "",
+		"name":                "aws",
+		"provider_config_key": "aws",
+		"version_constraint":  "6.64.0",
+	},
+}
+
+resources = {
+	"aws_instance.demo": {
+		"address": "aws_instance.demo",
+		"config": {
+			"ami": {
+				"references": [
+					"data.aws_ssm_parameter.al2023_ami.value",
+					"data.aws_ssm_parameter.al2023_ami",
+				],
+			},
+			"instance_type": {
+				"references": [
+					"var.instance_type",
+				],
+			},
+			"metadata_options": [
+				{
+					"http_endpoint": {
+						"constant_value": "enabled",
+					},
+					"http_tokens": {
+						"constant_value": "required",
+					},
+				},
+			],
+			"root_block_device": [
+				{
+					"encrypted": {
+						"constant_value": true,
+					},
+					"volume_size": {
+						"constant_value": 8,
+					},
+					"volume_type": {
+						"constant_value": "gp3",
+					},
+				},
+			],
+			"tags": {
+				"constant_value": {
+					"Environment": "demo",
+					"Name":        "demo-ec2",
+					"Project":     "Terraform Assignment",
+				},
+			},
+			"vpc_security_group_ids": {
+				"references": [
+					"aws_security_group.demo.id",
+					"aws_security_group.demo",
+				],
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "demo",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_instance",
+	},
+	"aws_security_group.demo": {
+		"address": "aws_security_group.demo",
+		"config": {
+			"description": {
+				"constant_value": "Security group for the demo application",
+			},
+			"egress": {
+				"constant_value": [
+					{
+						"cidr_blocks": [
+							"0.0.0.0/0",
+						],
+						"description":      "Allow outbound HTTPS",
+						"from_port":        443,
+						"ipv6_cidr_blocks": null,
+						"prefix_list_ids":  null,
+						"protocol":         "tcp",
+						"security_groups":  null,
+						"self":             null,
+						"to_port":          443,
+					},
+				],
+			},
+			"ingress": {
+				"references": [
+					"var.ssh_allowed_cidr",
+				],
+			},
+			"name": {
+				"constant_value": "demo-security-group",
+			},
+			"tags": {
+				"constant_value": {
+					"Environment": "demo",
+					"Project":     "Terraform Assignment",
+				},
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "demo",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_security_group",
+	},
+	"data.aws_ssm_parameter.al2023_ami": {
+		"address": "data.aws_ssm_parameter.al2023_ami",
+		"config": {
+			"name": {
+				"constant_value": "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "data",
+		"module_address":      "",
+		"name":                "al2023_ami",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_ssm_parameter",
+	},
+}
+
+provisioners = {}
+
+variables = {
+	"aws_region": {
+		"default":        "eu-west-1",
+		"description":    "AWS region for this example",
+		"module_address": "",
+		"name":           "aws_region",
+	},
+	"instance_type": {
+		"default":        "t3.micro",
+		"description":    "Approved EC2 instance type",
+		"module_address": "",
+		"name":           "instance_type",
+	},
+	"ssh_allowed_cidr": {
+		"default":        "176.61.80.53/32",
+		"description":    "IP range allowed to connect over SSH",
+		"module_address": "",
+		"name":           "ssh_allowed_cidr",
+	},
+}
+
+outputs = {}
+
+module_calls = {}
+
+strip_index = func(addr) {
+	s = strings.split(addr, ".")
+	for s as i, v {
+		s[i] = strings.split(v, "[")[0]
+	}
+
+	return strings.join(s, ".")
+}

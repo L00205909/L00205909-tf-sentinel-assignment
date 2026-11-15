@@ -1,0 +1,41 @@
+================ Results for policy set: <empty policy set name> ===============
+
+Sentinel Result: false
+
+This result means that one or more Sentinel policies failed. More than likely,
+this was due to the discovery of violations by the main rule and other
+sub-rules. Please see the details of the policies executed below to find the
+violation(s), which is usually indicated by a rule with a false boolean value,
+or non-zero collection data.
+
+1 policies evaluated.
+
+## Policy 1: Encryption (hard-mandatory)
+
+Result: false
+
+./Encryption.sentinel:66:1 - Rule "main"
+  Value:
+    false
+
+./Encryption.sentinel:27:1 - Rule "approved_instance_type"
+  Value:
+    true
+
+./Encryption.sentinel:21:1 - Rule "approved_region"
+  Value:
+    true
+
+./Encryption.sentinel:33:1 - Rule "encrypted_root_volumes"
+  Value:
+    true
+
+./Encryption.sentinel:52:1 - Rule "restricted_ssh"
+  Value:
+    false
+
+./Encryption.sentinel:42:1 - Rule "secure_metadata"
+  Value:
+    true
+
+
