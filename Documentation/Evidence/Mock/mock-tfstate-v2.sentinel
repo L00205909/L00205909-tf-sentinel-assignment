@@ -1,0 +1,29 @@
+terraform_version = "1.17.2"
+
+outputs = {}
+
+resources = {
+	"aws_ssm_parameter.al2023_ami": {
+		"address":        "aws_ssm_parameter.al2023_ami",
+		"depends_on":     [],
+		"deposed_key":    "",
+		"index":          null,
+		"mode":           "data",
+		"module_address": "",
+		"name":           "al2023_ami",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"tainted":        false,
+		"type":           "aws_ssm_parameter",
+		"values": {
+			"arn":             "arn:aws:ssm:eu-west-1::parameter/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64",
+			"id":              "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64",
+			"insecure_value":  "ami-0f00e1cf9df80b6ac",
+			"name":            "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64",
+			"region":          "eu-west-1",
+			"type":            "String",
+			"value":           "ami-0f00e1cf9df80b6ac",
+			"version":         202,
+			"with_decryption": true,
+		},
+	},
+}
