@@ -8,12 +8,12 @@ aws_security_groups = filter tfplan.resource_changes as _, resource {
 
 main = rule {
     all aws_security_groups as _, security_group {
-        all filter security_group.change.after.ingress as _, rule {
-            rule.protocol is "-1" or
+        all filter security_group.change.after.ingress as _, ingress_rule {
+            ingress_rule.protocol is "-1" or
             (
-                rule.protocol is "tcp" and
-                rule.from_port <= 22 and
-                rule.to_port >= 22
+                ingress_rule.protocol is "tcp" and
+                ingress_rule.from_port <= 22 and
+                ingress_rule.to_port >= 22
             )
         } as _, ssh_rule {
             not (ssh_rule.cidr_blocks contains "0.0.0.0/0") and
