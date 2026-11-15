@@ -1,0 +1,15 @@
+import "tfplan/v2" as tfplan
+
+allowed_instance_types = ["t3.micro"]
+
+aws_instances = filter tfplan.resource_changes as _, resource {
+    resource.mode is "managed" and
+    resource.type is "aws_instance" and
+    resource.change.after is not null
+}
+
+main = rule {
+    all aws_instances as _, instance {
+        instance.change.after.instance_type in allowed_instance_types
+    }
+}
