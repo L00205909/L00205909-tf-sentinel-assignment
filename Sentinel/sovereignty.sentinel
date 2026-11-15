@@ -1,0 +1,13 @@
+import "tfplan/v2" as tfplan
+
+aws_regional_resources = filter tfplan.resource_changes as _, resource {
+    resource.mode is "managed" and
+    resource.type in ["aws_instance", "aws_security_group"] and
+    resource.change.after is not null
+}
+
+main = rule {
+    all aws_regional_resources as _, resource {
+        resource.change.after.region is "eu-west-1"
+    }
+}
