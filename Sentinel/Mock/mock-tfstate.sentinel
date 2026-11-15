@@ -1,0 +1,61 @@
+import "strings"
+import "types"
+
+outputs = {}
+
+_modules = {
+	"root": {
+		"data": {
+			"aws_ssm_parameter": {
+				"al2023_ami": {
+					0: {
+						"attr": {
+							"arn":             "arn:aws:ssm:eu-west-1::parameter/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64",
+							"id":              "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64",
+							"insecure_value":  "ami-0f00e1cf9df80b6ac",
+							"name":            "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64",
+							"region":          "eu-west-1",
+							"type":            "String",
+							"value":           "ami-0f00e1cf9df80b6ac",
+							"version":         202,
+							"with_decryption": true,
+						},
+						"depends_on": [],
+						"id":         "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64",
+						"tainted":    false,
+					},
+				},
+			},
+		},
+		"path":      [],
+		"resources": {},
+	},
+}
+
+module_paths = [
+	[],
+]
+
+terraform_version = "1.17.2"
+
+module = func(path) {
+	if types.type_of(path) is not "list" {
+		error("expected list, got", types.type_of(path))
+	}
+
+	if length(path) < 1 {
+		return _modules.root
+	}
+
+	addr = []
+	for path as p {
+		append(addr, "module")
+		append(addr, p)
+	}
+
+	return _modules[strings.join(addr, ".")]
+}
+
+data = _modules.root.data
+path = _modules.root.path
+resources = _modules.root.resources
