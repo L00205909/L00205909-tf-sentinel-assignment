@@ -74,7 +74,7 @@ resource "aws_instance" "demo" {
 
   metadata_options {
     http_endpoint = "enabled"
-    http_tokens   = "optional"
+    http_tokens   = "required"
   }
 
   tags = {
